@@ -1,0 +1,10 @@
+body {
+  background: #fafafa;
+}
+
+a {
+  &:link, &:hover, &:visited, &:active {
+  	color: #555;
+  	text-decoration: none;
+  }
+}

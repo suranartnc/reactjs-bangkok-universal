@@ -1,0 +1,36 @@
+.article {
+  padding: 15px 20px;
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.09);
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  margin-bottom: 10px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.meta {
+  display: flex;
+  .meta_list {
+    margin-right: 10px;
+
+    .avatar {
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+      }
+    }
+
+    .author {
+      color: #00ab6b;
+    }
+
+    .date {
+      color: rgba(0,0,0,.44);
+      font-size: 0.9em;
+    }
+  }
+}

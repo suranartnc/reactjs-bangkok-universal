@@ -1,0 +1,33 @@
+.article {
+  width: 720px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+
+.title {
+  font-size: 2.5em;
+}
+
+.body {
+  font-size: 1.5em;
+}
+
+.meta {
+  display: flex;
+  .meta_list {
+    margin-right: 15px;
+
+    .avatar {
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+      }
+    }
+
+    .date {
+      color: rgba(0,0,0,.44);
+      font-size: 0.9em;
+    }
+  }
+}

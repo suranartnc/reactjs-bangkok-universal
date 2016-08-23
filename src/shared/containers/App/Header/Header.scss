@@ -1,0 +1,30 @@
+.header {
+  background: #fff;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 15px 0px 15px 0px;
+}
+
+.nav {
+  border-top: 1px solid #fafafa;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    li {
+      padding: 15px 20px 15px 0px;
+      font-size: 1.1em;
+      a {
+        color: rgba(0,0,0,.44);
+      }
+      :global(a.active) {
+        color: #555;
+      }
+    }
+  }
+}
