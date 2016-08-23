@@ -10,7 +10,7 @@ import config from '../../src/shared/configs';
 const wdsPath = `http://${config.host}:${config.wdsPort}/build/`;
 const assetsManifest = process.env.webpackAssets && JSON.parse(process.env.webpackAssets);
 
-const renderPage = (reactComponent) => (`
+const renderPage = (reactComponent, initialState) => (`
   <!DOCTYPE html>
   <html>
     <head>
@@ -21,6 +21,9 @@ const renderPage = (reactComponent) => (`
     </head>
     <body>
       <div id="root">${reactComponent}</div>
+      <script>
+        window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+      </script>
       ${process.env.NODE_ENV === 'production' ?
         `
           <script src="${assetsManifest.vendor.js}"></script>
@@ -41,12 +44,13 @@ export default function(req, res) {
     if (renderProps) {
       prefetchData(store.dispatch, renderProps.components, renderProps.params)
         .then(() => {
+          const initialState = store.getState()
           const reactComponent = renderToString(
             <Provider store={store}>
               <RouterContext {...renderProps} />
             </Provider>
           )
-          res.end(renderPage(reactComponent));
+          res.end(renderPage(reactComponent, initialState));
         })
     } else {
       res.status(400).send('Not Found')
