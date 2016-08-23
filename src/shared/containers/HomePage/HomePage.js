@@ -7,6 +7,10 @@ import Post from 'shared/components/Post/Post';
 
 class HomePage extends Component {
 
+  static prefetchData = [
+    () => postActions.getPostLatest()
+  ]
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(postActions.getPostLatest())

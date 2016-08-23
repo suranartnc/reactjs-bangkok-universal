@@ -4,6 +4,7 @@ import { RouterContext, match } from 'react-router'
 import { Provider } from 'react-redux'
 import createStore from 'shared/store/createStore'
 import routes from 'shared/routes'
+import prefetchData from './prefetchData'
 
 import config from '../../src/shared/configs';
 const wdsPath = `http://${config.host}:${config.wdsPort}/build/`;
@@ -38,12 +39,15 @@ export default function(req, res) {
     routes
   }, (error, redirectLocation, renderProps) => {
     if (renderProps) {
-      const reactComponent = renderToString(
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
-        </Provider>
-      )
-      res.end(renderPage(reactComponent));
+      prefetchData(store.dispatch, renderProps.components, renderProps.params)
+        .then(() => {
+          const reactComponent = renderToString(
+            <Provider store={store}>
+              <RouterContext {...renderProps} />
+            </Provider>
+          )
+          res.end(renderPage(reactComponent));
+        })
     } else {
       res.status(400).send('Not Found')
     }
