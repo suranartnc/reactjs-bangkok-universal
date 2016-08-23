@@ -8,7 +8,8 @@ import { Provider } from 'react-redux';
 import createStore from 'shared/store/createStore';
 import routes from 'shared/routes';
 
-const store = createStore();
+const initialState = window.__INITIAL_STATE__
+const store = createStore(initialState);
 
 render(
   <Provider store={store}>
