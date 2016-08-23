@@ -8,6 +8,10 @@ import PostContent from './PostContent/PostContent';
 
 class EntryPage extends Component {
 
+  static prefetchData = [
+    (params) => postActions.getPostById(params.id)
+  ]
+
   componentDidMount() {
     const { dispatch, params: { id } } = this.props
     dispatch(postActions.getPostById(id));
